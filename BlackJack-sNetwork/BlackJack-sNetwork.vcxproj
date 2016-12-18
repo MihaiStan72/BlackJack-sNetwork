@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{6F249FDE-E167-4DBB-8C22-DAB74316B04C}</ProjectGuid>
+    <ProjectGuid>{31171ABC-0751-422C-B215-592FF3836821}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>BlackJacksNetwork</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
@@ -146,15 +146,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="..\..\Black Jack%27s Network\Black Jack%27s Network\ReadMe.txt" />
+    <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Black Jack%27s Network\Black Jack%27s Network\stdafx.h" />
-    <ClInclude Include="..\..\Black Jack%27s Network\Black Jack%27s Network\targetver.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Black Jack%27s Network\Black Jack%27s Network\Black Jack%27s Network.cpp" />
-    <ClCompile Include="..\..\Black Jack%27s Network\Black Jack%27s Network\stdafx.cpp" />
+    <ClCompile Include="BlackJack-sNetwork.cpp" />
+    <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
