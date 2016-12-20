@@ -9,7 +9,7 @@ namespace UI {
 
 		void Draw();
 	private:
-
+		int x, y;
 	};
 
 	class DrawAgent {	
@@ -17,9 +17,13 @@ namespace UI {
 		DrawAgent();
 		~DrawAgent();
 
-		static DrawAgent Singleton();
+		static DrawAgent* GetReference();
+		static DrawAgent *instance;
 
 		void UpdateFrame();
+
+		void Add(DrawableObject* object);
+		void Delete(DrawableObject* object);
 	private:
 		std::list<DrawableObject*> referenceList;
 	
