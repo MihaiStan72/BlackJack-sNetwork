@@ -1,6 +1,7 @@
-#include "Imagine.h"
+#include "ConcreteDrawableObjects.h"
 #include <iostream>
 
+using namespace ConcreteDrawableObjects;
 
 Imagine::Imagine()
 {
