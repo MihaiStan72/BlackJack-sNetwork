@@ -1,5 +1,10 @@
 #pragma once
 #include <list>
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/System/Vector2.hpp>
+
+
 namespace UI {
 
 	class DrawableObject {
@@ -38,8 +43,19 @@ namespace UI {
 
 	class Window {
 	public:
-		Window();
 		virtual ~Window();
+		
+		static Window& GetReference() {
+			static Window instance;
+
+			SFML::window.create(sf::VideoMode::getDesktopMode(), "BlackJack's Network", sf::Style::None);
+
+			return instance;
+		}
+	private:
+		Window();
+		Window(Window const&);//do not implement
+		void operator=(Window const&);//do not implement
 	};	
 
 
