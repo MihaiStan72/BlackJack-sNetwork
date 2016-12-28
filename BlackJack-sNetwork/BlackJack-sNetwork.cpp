@@ -6,6 +6,7 @@ using namespace UI;
 
 int main()
 {
+	WindowManager::GetReference();
 	std::cin.get();
 	return 0;
 }

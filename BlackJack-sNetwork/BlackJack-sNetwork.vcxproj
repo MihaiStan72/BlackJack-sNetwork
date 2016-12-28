@@ -171,6 +171,7 @@
     <ClCompile Include="Imagine.cpp" />
     <ClCompile Include="Networking.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="WindowManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

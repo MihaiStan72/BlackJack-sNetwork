@@ -1,5 +1,6 @@
 #pragma once
 #include <list>
+#include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 namespace UI {
 
@@ -44,12 +45,17 @@ namespace UI {
 			return instance;
 		}
 
-	//	static SFML::
-
-		//virtual ~WindowManager();
+		sf::Window* getWindow(int index);
+		void CreateWindow();
+		void CloseWindow(int index);
+		virtual ~WindowManager();
 
 	private:
+		std::list<sf::Window*>windowList;	
+
 		WindowManager();
+		WindowManager(WindowManager const&);//do not implement
+		void operator=(WindowManager const&);//do not implement
 	};	
 
 
