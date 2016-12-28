@@ -15,7 +15,7 @@ void Imagine::Draw() {
 	sf::RenderWindow *window = WindowManager::GetReference().getWindow(0);
 	sf::Sprite sprite;
 	sf::Texture texture;
-	std::string path = "D:/BlackJack-sNetwork/BlackJack-sNetwork/x64/Debug/Resources/Photos/table_ps.png";
+	std::string path = "table_ps.png";
 	
 	if (!texture.loadFromFile(path)) {
 		std::cout << "Eroare incarcare png!" << '\n';
