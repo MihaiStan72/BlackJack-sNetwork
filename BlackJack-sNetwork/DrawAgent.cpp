@@ -19,7 +19,11 @@ void DrawAgent::Delete(DrawableObject* object) {
 }
 
 void DrawAgent::UpdateFrame() {
+	
+	sf::RenderWindow *window = WindowManager::GetReference().getWindow(0);
+	window->clear();
 	for each (DrawableObject* object in referenceList) {
 		object->Draw();
 	}
+	window->display();
 }

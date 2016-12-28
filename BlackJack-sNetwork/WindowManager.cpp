@@ -11,6 +11,12 @@ WindowManager::~WindowManager() {
 
 }
 
+sf::RenderWindow* WindowManager::getWindow(int index) {
+
+	return windowVector.at(index);
+}
+
+
 void WindowManager::CreateWindow() {
 	sf::RenderWindow *window = new sf::RenderWindow();
 	window->create(sf::VideoMode::getDesktopMode(), "BlackJack's Network", sf::Style::Default);
