@@ -1,5 +1,6 @@
 #pragma once
 #include <list>
+#include <SFML/Graphics.hpp>
 namespace UI {
 
 	class DrawableObject {
@@ -36,10 +37,19 @@ namespace UI {
 		std::list<DrawableObject*> referenceList;
 	};
 
-	class Window {
+	class WindowManager {
 	public:
-		Window();
-		virtual ~Window();
+		static WindowManager& GetReference() {
+			static WindowManager instance;
+			return instance;
+		}
+
+	//	static SFML::
+
+		//virtual ~WindowManager();
+
+	private:
+		WindowManager();
 	};	
 
 
