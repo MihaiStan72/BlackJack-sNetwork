@@ -3,6 +3,14 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 namespace UI {
+		
+	class Position {
+	public:
+		Position();
+		Position(int horizontalCoordinate, int verticalCoordinate);
+		~Position();
+		 int x, y;
+	};
 
 	class DrawableObject {
 	public:
@@ -13,8 +21,11 @@ namespace UI {
 		bool operator==(DrawableObject const&) {
 			return true;
 		}
+		void setPosition(int, int);
+		
 	private:
-		int x, y;
+		Position screenPosition;
+		
 	};
 
 	class DrawAgent {	
@@ -60,6 +71,4 @@ namespace UI {
 		WindowManager(WindowManager const&);//do not implement
 		void operator=(WindowManager const&);//do not implement
 	};	
-
-
 }

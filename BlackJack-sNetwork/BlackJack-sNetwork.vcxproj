@@ -171,6 +171,7 @@
     <ClCompile Include="DrawAgent.cpp" />
     <ClCompile Include="Imagine.cpp" />
     <ClCompile Include="Networking.cpp" />
+    <ClCompile Include="Position.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="WindowManager.cpp" />
   </ItemGroup>

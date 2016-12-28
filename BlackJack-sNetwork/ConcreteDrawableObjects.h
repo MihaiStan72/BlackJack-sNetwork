@@ -13,6 +13,7 @@ namespace ConcreteDrawableObjects {
 			return *this;
 		}
 		void Draw();
+		void Draw(char path[100], int x, int y);
 	private:
 		std::string path;
 	};
