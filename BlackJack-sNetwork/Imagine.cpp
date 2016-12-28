@@ -3,13 +3,14 @@
 
 using namespace ConcreteDrawableObjects;
 
-Imagine::Imagine(){
+Imagine::Imagine()
+{
 }
 
-void Imagine::Draw() 
-{
+void Imagine::Draw() {
 	std::cout << "Desenat Imagine";
 }
 
-Imagine::~Imagine(){
+Imagine::~Imagine()
+{
 }
