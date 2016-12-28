@@ -6,7 +6,10 @@ using namespace UI;
 
 int main()
 {
-	WindowManager::GetReference();
+	while (WindowManager::GetReference().HasOpenWindows())
+	{
+		WindowManager::GetReference().CheckWindowForEvents(0);
+	}
 	std::cin.get();
 	return 0;
 }

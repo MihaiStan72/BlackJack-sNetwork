@@ -45,13 +45,16 @@ namespace UI {
 			return instance;
 		}
 
-		sf::Window* getWindow(int index);
+		sf::RenderWindow* getWindow(int index);
+		
 		void CreateWindow();
 		void CloseWindow(int index);
 		virtual ~WindowManager();
 
+		void CheckWindowForEvents(int index);
+		bool HasOpenWindows();
 	private:
-		std::list<sf::Window*>windowList;	
+		std::vector<sf::RenderWindow*>windowVector;	
 
 		WindowManager();
 		WindowManager(WindowManager const&);//do not implement

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "UI.h"
-#include <string>
 
 namespace ConcreteDrawableObjects {
 	class Imagine : public UI::DrawableObject
@@ -13,7 +12,5 @@ namespace ConcreteDrawableObjects {
 			return *this;
 		}
 		void Draw();
-	private:
-		std::string path;
 	};
 }
