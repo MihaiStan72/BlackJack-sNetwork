@@ -2,6 +2,7 @@
 #include <list>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+
 namespace UI {
 		
 	class Position {
@@ -22,9 +23,11 @@ namespace UI {
 			return true;
 		}
 		void setPosition(int, int);
+		void setPath(std::string);
 		
-	private:
+	protected:
 		Position screenPosition;
+		std::string path;
 		
 	};
 
@@ -40,8 +43,8 @@ namespace UI {
 
 		void UpdateFrame();
 
-		void Add(DrawableObject* object);
-		void Delete(DrawableObject* object);
+		void Add(DrawableObject *object);
+		void Delete(DrawableObject *object);
 	private:
 		DrawAgent();
 		DrawAgent(DrawAgent const&);//do not implement

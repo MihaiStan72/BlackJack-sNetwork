@@ -4,6 +4,7 @@
 #include <string>
 
 namespace ConcreteDrawableObjects {
+	
 	class Imagine : public UI::DrawableObject
 	{
 	public:
@@ -13,8 +14,6 @@ namespace ConcreteDrawableObjects {
 			return *this;
 		}
 		void Draw();
-		void Draw(char path[100], int x, int y);
-	private:
-		std::string path;
+		void Draw(std::string path, int x, int y);
 	};
 }
