@@ -1,6 +1,7 @@
 #include "Networking.h"
 
 namespace Game {
+
 	class Game {
 	public:
 		Game();

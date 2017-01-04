@@ -5,6 +5,7 @@
 #include "ConcreteDrawableObjects.h"
 #include <sstream>
 #include <fstream>
+#include "debug.h"
 #define MAX_CARDS 60
 
 using namespace UI;
@@ -114,28 +115,48 @@ void draw_newDealerCard() {
 }
 
 
-int main()
-{	
-	draw_initialCards();
-	int index = 0;
-	while (WindowManager::GetReference().HasOpenWindows()){	
-		
-		if (index < 30) {
-			DrawAgent::GetReference().UpdateFrame();
-		}
-		index++;
-		std::cout << index << '\n';
+void CheckInput() {
+	while (WindowManager::GetReference().HasOpenWindows()) {
 		if (WindowManager::GetReference().CheckWindowForEvents(0) == 1) {
 			if (sumPlayer <= 21) {
 				draw_newPlayerCard();
 			}
 		}
-		
+
 		if (WindowManager::GetReference().CheckWindowForEvents(0) == 2) {
 			if (sumDealer <= 21) {
-				draw_newDealerCard();	
+				draw_newDealerCard();
 			}
 		}
+	}
+}
+
+
+int main()
+{	
+	draw_initialCards();
+	int index = 0;
+	sf::Thread thread(CheckInput);
+	//thread.launch();
+	while (WindowManager::GetReference().HasOpenWindows()){	
+		//Debugger::DrawFPS();
+		if (WindowManager::GetReference().CheckWindowForEvents(0) == 1) {
+			//if (sumPlayer <= 21) {
+				draw_newPlayerCard();
+			//}
+		}
+
+		if (WindowManager::GetReference().CheckWindowForEvents(0) == 2) {
+			if (sumDealer <= 21) {
+				draw_newDealerCard();
+			}
+		}
+		if (index < 30) {
+			DrawAgent::GetReference().UpdateFrame();
+		}
+		index++;
+		//std::cout << index << '\n';
+		
 	}
 	std::cin.get();
 	return 0;

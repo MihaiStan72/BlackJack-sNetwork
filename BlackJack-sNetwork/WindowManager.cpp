@@ -17,7 +17,9 @@ sf::RenderWindow* WindowManager::getWindow(int index) {
 
 void WindowManager::CreateWindow() {
 	sf::RenderWindow *window = new sf::RenderWindow();
-	window->create(sf::VideoMode::getDesktopMode(), "BlackJack's Network", sf::Style::None);
+	window->create(sf::VideoMode::getDesktopMode(), "BlackJack's Network", sf::Style::Default);
+	window->setVerticalSyncEnabled(true);
+	window->setFramerateLimit(60);
 	windowVector.push_back(window);
 }
 
@@ -32,9 +34,9 @@ int WindowManager::CheckWindowForEvents(int index) {
 	while (window->pollEvent(event))
 	{
 		if (event.type == sf::Event::MouseButtonPressed)
-		{
+		{	 
 
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))//afiseaza alta pereche de carti
+			if(event.mouseButton.button == (sf::Mouse::Left))
 			{
 				sf::Vector2i localPosition = sf::Mouse::getPosition(*window);
 				std::cout << "width: " << localPosition.x << '\n';
@@ -42,14 +44,14 @@ int WindowManager::CheckWindowForEvents(int index) {
 				return 1;
 			}
 
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Right))//afiseaza coordonatele click-ului
+			if (event.mouseButton.button == (sf::Mouse::Right))//afiseaza coordonatele click-ului
 			{
 				sf::Vector2i localPosition = sf::Mouse::getPosition(*window);
 				std::cout << "width: " << localPosition.x << '\n';
 				std::cout << "height: " << localPosition.y << '\n';
 				return 2;
 			}
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Middle))
+			if (event.mouseButton.button == (sf::Mouse::Middle))
 				window->close();
 		}
 
