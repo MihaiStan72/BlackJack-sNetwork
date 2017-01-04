@@ -15,8 +15,7 @@ void Imagine::Draw(){
 		this->Draw(path, screenPosition.x, screenPosition.y);
 	}
 	else {
-		std::cout << "Desenat tabla";
-
+		std::cout << "inceput desenat tabla" << '\n';
 		sf::RenderWindow *window = WindowManager::GetReference().getWindow(0);
 		sf::Sprite sprite;
 		sf::Texture texture;
@@ -30,13 +29,14 @@ void Imagine::Draw(){
 		int centredSprite_y = (window->getSize().y - sprite.getLocalBounds().height) / 2;
 		sprite.setPosition(centredSprite_x, centredSprite_y);
 		window->draw(sprite);
+		std::cout << "Desenat tabla" << '\n';
 	}
 }
 
-void Imagine::Draw(std::string path, int x, int y){
+void Imagine::Draw(std::string path, float x, float y){
 	
-	std::cout << "Desenat carte";
-
+	
+	std::cout << "inceput desenat carte" << '\n';
 	sf::RenderWindow *window = WindowManager::GetReference().getWindow(0);
 	sf::Sprite sprite;
 	sf::Texture texture;
@@ -48,6 +48,7 @@ void Imagine::Draw(std::string path, int x, int y){
 	sprite.setScale(0.25f, 0.25f);
 	sprite.setPosition(x, y);
 	window->draw(sprite);
+	std::cout << "Desenat carte" << '\n';
 }
 
 Imagine::~Imagine(){

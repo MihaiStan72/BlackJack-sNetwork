@@ -5,7 +5,7 @@ using namespace UI;
 Position::Position() {
 }
 
-Position::Position(int horizontalCoordinate, int verticalCoordinate){
+Position::Position(float horizontalCoordinate, float verticalCoordinate){
 	
 	x = horizontalCoordinate;
 	y = verticalCoordinate;

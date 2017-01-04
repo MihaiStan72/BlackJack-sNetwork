@@ -25,7 +25,7 @@ void WindowManager::CloseWindow(int index) {
 
 }
 
-void WindowManager::CheckWindowForEvents(int index) {
+int WindowManager::CheckWindowForEvents(int index) {
 	// check all the window's events that were triggered since the last iteration of the loop
 	sf::Event event;
 	sf::RenderWindow *window = windowVector.at(index);
@@ -36,7 +36,10 @@ void WindowManager::CheckWindowForEvents(int index) {
 
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))//afiseaza alta pereche de carti
 			{
-				//show_cards();
+				sf::Vector2i localPosition = sf::Mouse::getPosition(*window);
+				std::cout << "width: " << localPosition.x << '\n';
+				std::cout << "height: " << localPosition.y << '\n';
+				return 1;
 			}
 
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Right))//afiseaza coordonatele click-ului
@@ -44,6 +47,7 @@ void WindowManager::CheckWindowForEvents(int index) {
 				sf::Vector2i localPosition = sf::Mouse::getPosition(*window);
 				std::cout << "width: " << localPosition.x << '\n';
 				std::cout << "height: " << localPosition.y << '\n';
+				return 2;
 			}
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Middle))
 				window->close();

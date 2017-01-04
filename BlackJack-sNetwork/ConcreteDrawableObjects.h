@@ -14,6 +14,18 @@ namespace ConcreteDrawableObjects {
 			return *this;
 		}
 		void Draw();
-		void Draw(std::string path, int x, int y);
+		void Draw(std::string path, float x, float y);
+	};
+
+	class Text : public UI::DrawableObject
+	{
+	public:
+		Text();
+		virtual ~Text();
+		Text& operator*() {
+			return *this;
+		}
+		void Draw();
+		void Draw(std::string path, float x, float y);
 	};
 }

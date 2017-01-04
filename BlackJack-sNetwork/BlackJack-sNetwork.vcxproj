@@ -173,6 +173,7 @@
     <ClCompile Include="Networking.cpp" />
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="Text.cpp" />
     <ClCompile Include="WindowManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

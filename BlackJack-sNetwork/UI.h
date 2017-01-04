@@ -8,7 +8,7 @@ namespace UI {
 	class Position {
 	public:
 		Position();
-		Position(int horizontalCoordinate, int verticalCoordinate);
+		Position(float horizontalCoordinate, float verticalCoordinate);
 		~Position();
 		 int x, y;
 	};
@@ -65,7 +65,7 @@ namespace UI {
 		void CloseWindow(int index);
 		virtual ~WindowManager();
 
-		void CheckWindowForEvents(int index);
+		int CheckWindowForEvents(int index);
 		bool HasOpenWindows();
 	private:
 		std::vector<sf::RenderWindow*>windowVector;	
