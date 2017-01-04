@@ -45,6 +45,7 @@ namespace UI {
 
 		void Add(DrawableObject *object);
 		void Delete(DrawableObject *object);
+		void EraseAll();
 	private:
 		DrawAgent();
 		DrawAgent(DrawAgent const&);//do not implement
@@ -74,4 +75,14 @@ namespace UI {
 		WindowManager(WindowManager const&);//do not implement
 		void operator=(WindowManager const&);//do not implement
 	};	
+
+	class DrawManager {
+	public:
+		DrawManager();
+		virtual ~DrawManager();
+
+		void DrawMenu();
+		void DrawInstructions();
+		void DrawLobby();
+	};
 }
