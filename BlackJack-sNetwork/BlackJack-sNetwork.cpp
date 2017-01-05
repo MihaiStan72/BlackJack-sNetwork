@@ -8,6 +8,9 @@ int main()
 	int checkResult = 0;
 	while (ApplicationCore::Application::GetReference().GetCurrentScreen() != ApplicationCore::Screen::Exit) {
 		checkResult = UI::WindowManager::GetReference().CheckWindowForEvents(0);
+		if (!checkResult) {
+
+		}
 	}
 	return 0;
 }
