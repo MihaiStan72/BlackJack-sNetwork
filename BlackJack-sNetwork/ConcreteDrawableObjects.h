@@ -51,7 +51,6 @@ namespace ConcreteDrawableObjects {
 
 	private:
 		float width, height;
-		sf::Vector2i mousePosition;
 	};
 
 }
