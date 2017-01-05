@@ -6,10 +6,8 @@
 using namespace ConcreteDrawableObjects;
 using namespace UI;
 
-
 Button::Button(){
 }
-
 
 void Button::setScaleSize(float x, float y){
 	width = x;
