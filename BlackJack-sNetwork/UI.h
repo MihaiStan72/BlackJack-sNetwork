@@ -67,11 +67,14 @@ namespace UI {
 
 		int CheckWindowForEvents(int index);
 		bool HasOpenWindows();
+
 	private:
 		std::vector<sf::RenderWindow*>windowVector;	
 
 		WindowManager();
 		WindowManager(WindowManager const&);//do not implement
 		void operator=(WindowManager const&);//do not implement
-	};	
+		bool isButtonPressed();
+		sf::Vector2i mousePosition;
+	};
 }

@@ -28,4 +28,30 @@ namespace ConcreteDrawableObjects {
 		void Draw();
 		void Draw(std::string path, float x, float y);
 	};
+
+	class Button : public UI::DrawableObject
+	{
+	public:
+
+		enum type : int {
+			SinglePlayer,
+			MultiPlayer,
+			Instructions,
+			Exit,
+			Hit,
+			Stand
+		};
+		Button();
+		virtual ~Button();
+		Button& operator*() {
+			return *this;
+		}
+		void setScaleSize(float x, float y);
+		void Draw();
+
+	private:
+		float width, height;
+		sf::Vector2i mousePosition;
+	};
+
 }

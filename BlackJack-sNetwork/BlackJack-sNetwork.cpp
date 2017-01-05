@@ -15,7 +15,6 @@ struct{
 	char Matrix[MAX_CARDS][MAX_CARDS];
 	int value[MAX_CARDS];
 }cards;
-
 bool uniqueCard[MAX_CARDS];
 
 void readPaths(int &cardsNumber) {
@@ -63,12 +62,16 @@ void draw_initialCards(){
 	Imagine *cardTwo_Dealer = new Imagine();
 	Text *cardsSum_Player = new Text();
 	Text *cardsSum_Dealer = new Text();
+	Button *button = new Button();
+	
 
 	cardOne_Player->setPosition(620, 370);
 	cardTwo_Player->setPosition(660, 390);
 	cardOne_Dealer->setPosition(610, 15);
 	cardTwo_Dealer->setPosition(650, 35);
 	cardsSum_Player->setPosition(550, 405);
+	button->setPosition(250, 350);
+	button->setScaleSize(0.25, 0.25);
 
 	getRandomPath(path, number);
 	cardOne_Player->setPath(path);
@@ -91,7 +94,7 @@ void draw_initialCards(){
 	DrawAgent::GetReference().Add(cardTwo_Dealer);
 	DrawAgent::GetReference().Add(cardsSum_Player);
 	DrawAgent::GetReference().Add(cardsSum_Dealer);
-
+	DrawAgent::GetReference().Add(button);
 }
 
 void draw_newPlayerCard(){
@@ -104,7 +107,7 @@ void draw_newPlayerCard(){
 	DrawAgent::GetReference().Add(newCard);
 }
 
-void draw_newDealerCard() {
+void draw_newDealerCard(){
 
 	Imagine *newCard = new Imagine();
 	newCard->setPosition(650, 35);
@@ -114,49 +117,21 @@ void draw_newDealerCard() {
 	DrawAgent::GetReference().Add(newCard);
 }
 
-
-void CheckInput() {
-	while (WindowManager::GetReference().HasOpenWindows()) {
-		if (WindowManager::GetReference().CheckWindowForEvents(0) == 1) {
-			if (sumPlayer <= 21) {
-				draw_newPlayerCard();
-			}
-		}
-
-		if (WindowManager::GetReference().CheckWindowForEvents(0) == 2) {
-			if (sumDealer <= 21) {
-				draw_newDealerCard();
-			}
-		}
-	}
-}
-
-
 int main()
 {	
 	draw_initialCards();
-	int index = 0;
-	sf::Thread thread(CheckInput);
-	//thread.launch();
 	while (WindowManager::GetReference().HasOpenWindows()){	
-		//Debugger::DrawFPS();
-		if (WindowManager::GetReference().CheckWindowForEvents(0) == 1) {
-			//if (sumPlayer <= 21) {
-				draw_newPlayerCard();
-			//}
+		int result = WindowManager::GetReference().CheckWindowForEvents(0);
+
+		if (result == 1) {
+			draw_newPlayerCard();
 		}
 
-		if (WindowManager::GetReference().CheckWindowForEvents(0) == 2) {
-			if (sumDealer <= 21) {
-				draw_newDealerCard();
-			}
+		if (result == 2) {
+			draw_newDealerCard();
 		}
-		if (index < 30) {
-			DrawAgent::GetReference().UpdateFrame();
-		}
-		index++;
-		//std::cout << index << '\n';
-		
+	
+		DrawAgent::GetReference().UpdateFrame();	
 	}
 	std::cin.get();
 	return 0;
