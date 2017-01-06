@@ -65,6 +65,15 @@ namespace UI {
 
 	class WindowManager {
 	public:
+
+		enum WindowEvent : int {
+			Close,
+			LeftClick,
+			RightClick,
+			MiddleClick,
+			NoEvent
+		};
+
 		static WindowManager& GetReference() {
 			static WindowManager instance;
 			return instance;
@@ -76,7 +85,7 @@ namespace UI {
 		void CloseWindow(int index);
 		virtual ~WindowManager();
 
-		int CheckWindowForEvents(int index);
+		WindowEvent CheckWindowForEvents(int index);
 		bool HasOpenWindows();
 
 	private:

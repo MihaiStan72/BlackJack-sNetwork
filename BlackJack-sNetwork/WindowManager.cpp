@@ -29,12 +29,12 @@ void WindowManager::CloseWindow(int index) {
 	windowVector.erase(windowVector.begin() + index);
 }
 
-int WindowManager::CheckWindowForEvents(int index) {
+WindowManager::WindowEvent WindowManager::CheckWindowForEvents(int index) {
 	// check all the window's events that were triggered since the last iteration of the loop
 	sf::Event event;
 	sf::RenderWindow *window = windowVector.at(index);
 	if (window == NULL) {
-		return 0;
+		return WindowEvent::Close;
 	}
 	while (window->pollEvent(event))
 	{
@@ -46,7 +46,7 @@ int WindowManager::CheckWindowForEvents(int index) {
 				mousePosition = sf::Mouse::getPosition(*window);
 				std::cout << "width: " << mousePosition.x << '\n';
 				std::cout << "height: " << mousePosition.y << '\n';
-				return 1;
+				return WindowEvent::LeftClick;
 			}
 
 			if (event.mouseButton.button == (sf::Mouse::Right))
@@ -54,18 +54,21 @@ int WindowManager::CheckWindowForEvents(int index) {
 				mousePosition = sf::Mouse::getPosition(*window);
 				std::cout << "width: " << mousePosition.x << '\n';
 				std::cout << "height: " << mousePosition.y << '\n';
-				return 2;
+				return WindowEvent::RightClick;
 			}
 			if (event.mouseButton.button == (sf::Mouse::Middle)) {
 				CloseWindow(index);
+				return WindowEvent::Close;
 			}
 				
 		}
 
 		if (event.type == sf::Event::Closed) {
 			CloseWindow(index);
+			return WindowEvent::Close;
 		}
 	}
+	return WindowEvent::NoEvent;
 }
 
 bool WindowManager::HasOpenWindows() {
