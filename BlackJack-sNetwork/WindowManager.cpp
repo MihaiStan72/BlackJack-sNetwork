@@ -28,12 +28,12 @@ void WindowManager::CloseWindow(int index) {
 	window->close();
 	windowVector.erase(windowVector.begin() + index);
 }
-	
+
 int WindowManager::CheckWindowForEvents(int index) {
 	// check all the window's events that were triggered since the last iteration of the loop
 	sf::Event event;
 	sf::RenderWindow *window = windowVector.at(index);
-	if (window != NULL) {
+	if (window == NULL) {
 		return 0;
 	}
 	while (window->pollEvent(event))
@@ -43,33 +43,23 @@ int WindowManager::CheckWindowForEvents(int index) {
 
 			if(event.mouseButton.button == (sf::Mouse::Left))
 			{
-				sf::Vector2i localPosition = sf::Mouse::getPosition(*window);
-				std::cout << "width: " << localPosition.x << '\n';
-				std::cout << "height: " << localPosition.y << '\n';
+				mousePosition = sf::Mouse::getPosition(*window);
+				std::cout << "width: " << mousePosition.x << '\n';
+				std::cout << "height: " << mousePosition.y << '\n';
 				return 1;
 			}
 
-			if (event.mouseButton.button == (sf::Mouse::Right))//afiseaza coordonatele click-ului
+			if (event.mouseButton.button == (sf::Mouse::Right))
 			{
-				sf::Vector2i localPosition = sf::Mouse::getPosition(*window);
-				std::cout << "width: " << localPosition.x << '\n';
-				std::cout << "height: " << localPosition.y << '\n';
+				mousePosition = sf::Mouse::getPosition(*window);
+				std::cout << "width: " << mousePosition.x << '\n';
+				std::cout << "height: " << mousePosition.y << '\n';
 				return 2;
 			}
 			if (event.mouseButton.button == (sf::Mouse::Middle)) {
 				CloseWindow(index);
 			}
 				
-		}
-
-		if (event.type == sf::Event::KeyPressed)
-		{
-			//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-			//chip.move()
-
-			/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))*/
 		}
 
 		if (event.type == sf::Event::Closed) {

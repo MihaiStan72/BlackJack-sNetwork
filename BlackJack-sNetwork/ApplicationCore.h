@@ -1,7 +1,5 @@
 #pragma once
 
-
-
 namespace ApplicationCore {
 	enum Screen : int {
 		Menu,

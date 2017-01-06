@@ -53,6 +53,16 @@ namespace UI {
 		std::list<DrawableObject*> referenceList;
 	};
 
+	class DrawManager {
+	public:
+		DrawManager();
+		virtual ~DrawManager();
+
+		void DrawMenu();
+		void DrawInstructions();
+		void DrawLobby();
+	};
+
 	class WindowManager {
 	public:
 		static WindowManager& GetReference() {
@@ -68,21 +78,14 @@ namespace UI {
 
 		int CheckWindowForEvents(int index);
 		bool HasOpenWindows();
+
 	private:
 		std::vector<sf::RenderWindow*>windowVector;	
 
 		WindowManager();
 		WindowManager(WindowManager const&);//do not implement
 		void operator=(WindowManager const&);//do not implement
-	};	
-
-	class DrawManager {
-	public:
-		DrawManager();
-		virtual ~DrawManager();
-
-		void DrawMenu();
-		void DrawInstructions();
-		void DrawLobby();
+		bool isButtonPressed();
+		sf::Vector2i mousePosition;
 	};
 }
