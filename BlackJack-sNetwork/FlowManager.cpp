@@ -9,8 +9,8 @@ void Flow::FlowManager::Loop() {
 	UI::WindowManager::WindowEvent checkResult = UI::WindowManager::WindowEvent::NoEvent;
 	while (ApplicationCore::Application::GetReference().GetCurrentScreen() != UI::Screen::Exit) {
 		if (DEBUG) {
-			ApplicationCore::Application::GetReference()._game.Start();
-			if (ApplicationCore::Application::GetReference()._game.gameState == Game::State::Exiting) {
+			ApplicationCore::Application::GetReference()._game->Start();
+			if (ApplicationCore::Application::GetReference()._game->gameState == Game::State::Exiting) {
 				UI::Screen::Exit;
 				break;
 			}
