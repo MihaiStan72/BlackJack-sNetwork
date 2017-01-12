@@ -21,6 +21,8 @@ namespace Flow {
 		ButtonManager();
 		virtual ~ButtonManager();
 
+		void Flow::ButtonManager::AddButton(Flow::Button *button);
+		void DeleteAllButtons();
 		std::string getPressedButton();
 	private:
 		std::list<Flow::Button*> buttonList;
@@ -31,9 +33,8 @@ namespace Flow {
 		FlowManager();
 		virtual ~FlowManager();
 
-
 		void Loop();
-
+		void Flow::FlowManager::CreateButton(std::string title, UI::Position topLeftCorner, UI::Position bottomRightCorner);
 	private:
 		Flow::ButtonManager _buttonManager;
 		void DrawScreen(std::string screenTitle);

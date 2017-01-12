@@ -27,9 +27,7 @@ namespace UI {
 		virtual ~DrawableObject();
 
 		virtual void Draw() = 0;
-		bool operator==(DrawableObject const&) {
-			return true;
-		}
+
 		void setPosition(Position position);
 		void setPath(std::string);
 		
@@ -37,15 +35,6 @@ namespace UI {
 		Position screenPosition;
 		std::string path;
 		
-	};
-
-	class ButtonManager {
-	public:
-		ButtonManager();
-		virtual ~ButtonManager();
-
-	private:
-		//std::vector
 	};
 
 	class DrawAgent {	
