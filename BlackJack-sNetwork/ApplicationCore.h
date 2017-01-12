@@ -13,7 +13,7 @@ namespace ApplicationCore {
 			 return instance;
 		 }
 		
-		 Game::Game _game;
+		 Game::Game* _game;
 		 UI::Screen GetCurrentScreen();
 		 void SetCurrentScreen(UI::Screen newScreen);
 	private: 

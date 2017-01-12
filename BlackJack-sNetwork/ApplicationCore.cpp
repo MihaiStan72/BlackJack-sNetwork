@@ -2,6 +2,7 @@
 
 ApplicationCore::Application::Application() {
 	current = UI::Screen::Menu;
+	_game = new Game::Game();
 }
 
 ApplicationCore::Application::~Application() {
