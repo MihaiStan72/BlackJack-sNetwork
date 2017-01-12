@@ -7,7 +7,7 @@ DrawableObject::DrawableObject() {
 
 void DrawableObject::setPosition(Position position){
 
-	screenPosition = position;
+	topLeftPosition = position;
 }
 
 void DrawableObject::setPath(std::string string) {

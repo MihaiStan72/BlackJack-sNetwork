@@ -11,8 +11,8 @@ Text::Text() {
 
 void Text::Draw() {
 
-	if (screenPosition.x && screenPosition.y && !path.empty()) {
-		this->Draw(path, screenPosition.x, screenPosition.y);
+	if (topLeftPosition.x && topLeftPosition.y && !path.empty()) {
+		this->Draw(path, topLeftPosition.x, topLeftPosition.y);
 	}
 }
 

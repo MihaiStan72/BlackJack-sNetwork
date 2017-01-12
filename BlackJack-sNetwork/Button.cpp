@@ -37,7 +37,7 @@ void Button::Draw(){
 	//sf::FloatRect global = sprite.getGlobalBounds();
 	//std::cout << global.width << " " << global.height << '\n';
 
-	sprite.setPosition(screenPosition.x, screenPosition.y);
+	sprite.setPosition(topLeftPosition.x, topLeftPosition.y);
 	window->draw(sprite);
 
 	if (EnableUILogging) {

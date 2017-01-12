@@ -32,7 +32,7 @@ namespace UI {
 		void setPath(std::string);
 		
 	protected:
-		Position screenPosition;
+		Position topLeftPosition, bottomRightPosition;
 		std::string path;
 		
 	};
