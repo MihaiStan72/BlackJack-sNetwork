@@ -1,7 +1,6 @@
 #include "Flow.h"
 #include "ApplicationCore.h"
 #include "UI.h"
-#include "ConcreteDrawableObjects.h"
 
 #define DEBUG 1
 
@@ -11,6 +10,10 @@ void Flow::FlowManager::Loop() {
 	while (ApplicationCore::Application::GetReference().GetCurrentScreen() != UI::Screen::Exit) {
 		if (DEBUG) {
 			ApplicationCore::Application::GetReference()._game->Start();
+			if (ApplicationCore::Application::GetReference()._game->gameState == Game::State::Exiting) {
+				UI::Screen::Exit;
+				break;
+			}
 		}
 		checkResult = UI::WindowManager::GetReference().CheckWindowForEvents(0);
 		if (checkResult == UI::WindowManager::WindowEvent::Close) {
@@ -36,21 +39,5 @@ Flow::FlowManager::~FlowManager() {
 
 void Flow::FlowManager::DrawScreen(std::string screenTitle) {
 	UI::DrawAgent::GetReference().EraseAll();
-	Flow::FlowManager::_buttonManager.DeleteAllButtons();
-	
-	if (screenTitle == "Instructions") {
-		//draw instructions
-	}
-	if (screenTitle == "Game") {
-
-	}
 	//check title and draw screens accordingly
-}
-
-void Flow::FlowManager::CreateButton(std::string title, UI::Position topLeftCorner, UI::Position bottomRightCorner) {
-	Flow::Button *flowButton = new Flow::Button(topLeftCorner, bottomRightCorner, title);
-	FlowManager::_buttonManager.AddButton(flowButton);
-	ConcreteDrawableObjects::Button *uiButton = new ConcreteDrawableObjects::Button();
-	uiButton->setPosition(topLeftCorner);
-//TODO change UI::button to have bottomright corner instead of width and height
 }
