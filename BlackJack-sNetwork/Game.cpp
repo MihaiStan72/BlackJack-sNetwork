@@ -44,7 +44,7 @@ void  Game::Game::getRandomPath(char path[MAX_CARDS], int &number) {
 void Game::Game::create_playerCardsVector() {
 
 	for (int index = 0; index < MAX_PLAYER_CARDS; index++){
-		
+		playerCards.shownCards[index] = new Imagine();
 		playerCards.shownCards[index]->setPosition(UI::Position(100, 100));///////*****************
 		getRandomPath(path, number);
 		playerCards.shownCards[index]->setPath(path);
