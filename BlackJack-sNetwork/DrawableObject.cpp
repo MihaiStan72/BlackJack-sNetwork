@@ -5,9 +5,9 @@ using namespace UI;
 DrawableObject::DrawableObject() {	
 }
 
-void DrawableObject::setPosition(int x, int y){
+void DrawableObject::setPosition(Position position){
 
-	screenPosition.Position::Position(x, y);
+	screenPosition = position;
 }
 
 void DrawableObject::setPath(std::string string) {

@@ -8,6 +8,10 @@ UI::DrawManager::~DrawManager() {
 
 }
 
+void UI::DrawManager::DrawScreen(UI::Screen screen) {
+
+}
+
 void UI::DrawManager::DrawInstructions() {
 
 }
@@ -16,6 +20,6 @@ void UI::DrawManager::DrawMenu() {
 
 }
 
-void UI::DrawManager::DrawLobby() {
+void UI::DrawManager::DrawSinglePlayer() {
 
 }

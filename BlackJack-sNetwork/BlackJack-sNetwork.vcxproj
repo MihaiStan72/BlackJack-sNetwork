@@ -161,6 +161,7 @@
     <ClInclude Include="ApplicationCore.h" />
     <ClInclude Include="ConcreteDrawableObjects.h" />
     <ClInclude Include="debug.h" />
+    <ClInclude Include="Flow.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Networking.h" />
     <ClInclude Include="stdafx.h" />
@@ -174,6 +175,9 @@
     <ClCompile Include="DrawableObject.cpp" />
     <ClCompile Include="DrawAgent.cpp" />
     <ClCompile Include="DrawManager.cpp" />
+    <ClCompile Include="FlowButton.cpp" />
+    <ClCompile Include="FlowButtonManager.cpp" />
+    <ClCompile Include="FlowManager.cpp" />
     <ClCompile Include="Imagine.cpp" />
     <ClCompile Include="Networking.cpp" />
     <ClCompile Include="Position.cpp" />

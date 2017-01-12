@@ -1,28 +1,22 @@
 #pragma once
+#include "UI.h"
 
 namespace ApplicationCore {
-	enum Screen : int {
-		Menu,
-		SinglePlayer,
-		Multiplayer,
-		Instructions,
-		Exit
-	};
 
 	class Application {
 	public: 
 		 ~Application();	
-
+		 UI::DrawManager drawManager;
 
 		 static Application& GetReference() {
 			 static Application instance;
 			 return instance;
 		 }
 
-		 Screen GetCurrentScreen();
-		 void SetCurrentScreen(Screen newScreen); 
+		 UI::Screen GetCurrentScreen();
+		 void SetCurrentScreen(UI::Screen newScreen);
 	private: 
-		Screen current;
+		UI::Screen current;
 		Application();
 		Application(Application const&);//do not implement
 		void operator=(Application const&);//do not implement

@@ -9,8 +9,16 @@ namespace UI {
 	public:
 		Position();
 		Position(float horizontalCoordinate, float verticalCoordinate);
-		~Position();
-		 int x, y;
+		virtual ~Position();
+		int x, y;
+	};
+
+	enum Screen : int {
+		Menu,
+		SinglePlayer,
+		Multiplayer,
+		Instructions,
+		Exit
 	};
 
 	class DrawableObject {
@@ -22,13 +30,22 @@ namespace UI {
 		bool operator==(DrawableObject const&) {
 			return true;
 		}
-		void setPosition(int, int);
+		void setPosition(Position position);
 		void setPath(std::string);
 		
 	protected:
 		Position screenPosition;
 		std::string path;
 		
+	};
+
+	class ButtonManager {
+	public:
+		ButtonManager();
+		virtual ~ButtonManager();
+
+	private:
+		//std::vector
 	};
 
 	class DrawAgent {	
@@ -58,9 +75,12 @@ namespace UI {
 		DrawManager();
 		virtual ~DrawManager();
 
+		void UI::DrawManager::DrawScreen(Screen screen);
+	
+	private: 
 		void DrawMenu();
 		void DrawInstructions();
-		void DrawLobby();
+		void DrawSinglePlayer();
 	};
 
 	class WindowManager {
