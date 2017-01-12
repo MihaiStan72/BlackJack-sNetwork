@@ -28,10 +28,14 @@ namespace Flow {
 
 	class FlowManager {
 	public:
+		FlowManager();
+		virtual ~FlowManager();
+
+
 		void Loop();
 
 	private:
 		Flow::ButtonManager _buttonManager;
-
+		void DrawScreen(std::string screenTitle);
 	};
 }

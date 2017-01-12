@@ -174,10 +174,10 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="DrawableObject.cpp" />
     <ClCompile Include="DrawAgent.cpp" />
-    <ClCompile Include="DrawManager.cpp" />
     <ClCompile Include="FlowButton.cpp" />
     <ClCompile Include="FlowButtonManager.cpp" />
     <ClCompile Include="FlowManager.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Imagine.cpp" />
     <ClCompile Include="Networking.cpp" />
     <ClCompile Include="Position.cpp" />

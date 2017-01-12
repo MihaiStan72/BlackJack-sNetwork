@@ -5,11 +5,10 @@ namespace Game {
 	class Game {
 	public:
 		Game();
+		virtual ~Game();
 		void Start();
-
-		static Game Singleton();
 	private:
-
+		void Loop();
 	};
 
 

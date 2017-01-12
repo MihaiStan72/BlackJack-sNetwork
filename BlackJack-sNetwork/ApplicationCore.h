@@ -1,18 +1,19 @@
 #pragma once
 #include "UI.h"
+#include "Game.h"
 
 namespace ApplicationCore {
 
 	class Application {
 	public: 
-		 ~Application();	
-		 UI::DrawManager drawManager;
+		 ~Application();
 
 		 static Application& GetReference() {
 			 static Application instance;
 			 return instance;
 		 }
-
+		
+		 Game::Game _game;
 		 UI::Screen GetCurrentScreen();
 		 void SetCurrentScreen(UI::Screen newScreen);
 	private: 

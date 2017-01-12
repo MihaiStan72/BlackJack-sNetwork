@@ -70,19 +70,6 @@ namespace UI {
 		std::list<DrawableObject*> referenceList;
 	};
 
-	class DrawManager {
-	public:
-		DrawManager();
-		virtual ~DrawManager();
-
-		void UI::DrawManager::DrawScreen(Screen screen);
-	
-	private: 
-		void DrawMenu();
-		void DrawInstructions();
-		void DrawSinglePlayer();
-	};
-
 	class WindowManager {
 	public:
 
