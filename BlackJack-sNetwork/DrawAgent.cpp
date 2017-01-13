@@ -12,7 +12,7 @@ DrawAgent::~DrawAgent() {
 }
 
 void DrawAgent::Add(DrawableObject* object) {
-	referenceList.push_back(object);
+ 	referenceList.push_back(object);
 }
 
 void DrawAgent::Delete(DrawableObject* object) {

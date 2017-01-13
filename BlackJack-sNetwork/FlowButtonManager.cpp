@@ -14,9 +14,10 @@ void Flow::ButtonManager::AddButton(Flow::Button *button) {
 
 void Flow::ButtonManager::DeleteAllButtons() {
 	for each (Flow::Button *button in buttonList) {
-		DeleteButton(button);
-		UI::DrawAgent::GetReference().Delete(button->UIButton);
+		//DeleteButton(button);
+		UI::DrawAgent::GetReference().Delete(button->image);
 	}
+	buttonList.clear();
 }
 
 void Flow::ButtonManager::DeleteButton(Flow::Button *button) {
