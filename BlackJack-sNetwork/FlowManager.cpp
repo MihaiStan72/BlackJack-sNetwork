@@ -2,9 +2,17 @@
 #include "ApplicationCore.h"
 #include "UI.h"
 
+<<<<<<< HEAD
 #define DebugGame 0
 #define DebugScoreChart 0
 #define DEBUGMENU 1
+=======
+using namespace ConcreteDrawableObjects;
+using namespace UI;
+
+#define DebugGame 0
+#define DebugScoreChart 1
+>>>>>>> origin/master
 
 void Flow::FlowManager::Loop() {
 	ApplicationCore::Application::GetReference().SetCurrentScreen(UI::Screen::Menu);
@@ -29,7 +37,9 @@ void Flow::FlowManager::Loop() {
 }
 
 Flow::FlowManager::FlowManager() {
+	
 	Loop();
+	
 }
 
 Flow::FlowManager::~FlowManager() {
@@ -43,12 +53,26 @@ void Flow::FlowManager::SetScreenForButton(std::string buttonName) {
 	}
 }
 
+<<<<<<< HEAD
 
 void Flow::FlowManager::DrawScreen(UI::Screen screen) {
 	UI::DrawAgent::GetReference().EraseAll();
 	_buttonManager.DeleteAllButtons();
 	if (screen == UI::Screen::ScoreChart) {
 		DrawScoreChart();
+=======
+void Flow::FlowManager::DrawScreen(std::string screenTitle) {
+	UI::DrawAgent::GetReference().EraseAll();
+	_buttonManager.DeleteAllButtons();
+
+	scoreChart.push_back("Bogdan P.           -999999");
+	scoreChart.push_back("Andrei Timofte      100");
+	scoreChart.push_back("Radu Stan           10");
+	scoreChart.push_back("Mihai Stan          1000");
+
+	if (screenTitle == "ScoreChart") {
+		DrawScoreChart(scoreChart);
+>>>>>>> origin/master
 	}
 	if (screen == UI::Screen::Menu) {
 		DrawMenu();
@@ -56,6 +80,7 @@ void Flow::FlowManager::DrawScreen(UI::Screen screen) {
 	//check title and draw screens accordingly
 }
 
+<<<<<<< HEAD
 void Flow::FlowManager::DrawScoreChart() {
 	std::cout << "DrawChart";
 }
@@ -64,6 +89,32 @@ void Flow::FlowManager::DrawMenu() {
 	Flow::Button *playButton = CreateButton("Play", UI::Position(200, 200), UI::Position(400, 400), "Resources/Photos/buton.png");
 	Flow::Button *scoreChartButton = CreateButton("ScoreChart", UI::Position(200, 600), UI::Position(400, 800), "Resources/Photos/buton.png");
 	UI::DrawAgent::GetReference().UpdateFrame();
+=======
+void Flow::FlowManager::DrawScoreChart(std::vector<std::string> scoreChart) {
+
+	namePos.x = 746; namePos.y = 263;
+	Imagine *background = new Imagine();
+	Text *score = new Text();
+	Text *vectorName[10];
+	background->setPosition(UI::Position(-1, -1));
+	
+	score->setPath("Score Chart");
+	score->setPosition(UI::Position(740, 35));
+	score->SetTextDimm(60);
+		
+	DrawAgent::GetReference().Add(background);
+	DrawAgent::GetReference().Add(score);
+	for (int index = 0; index < scoreChart.size(); index++) {
+		
+		vectorName[index] = new Text();
+		vectorName[index]->setPath(scoreChart[index]);
+		vectorName[index]->SetTextDimm(30);
+		vectorName[index]->setPosition(UI::Position(namePos.x, namePos.y));
+		namePos.y += 30;
+		DrawAgent::GetReference().Add(vectorName[index]);
+	}
+	DrawAgent::GetReference().UpdateFrame();
+>>>>>>> origin/master
 }
 
 Flow::Button* Flow::FlowManager::CreateButton(std::string title, UI::Position topLeftCorner, UI::Position bottomRightCorner, std::string path) {
