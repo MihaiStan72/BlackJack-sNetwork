@@ -7,11 +7,12 @@ using namespace ConcreteDrawableObjects;
 using namespace UI;
 
 Button::Button(){
+	topLeftPosition = Position(0, 0);
 }
 
 void Button::SetWidthAndHeight(float width, float height){
-	width = width;
-	height = height;
+	this->width = width;
+	this->height = height;
 }
 
 void Button::Draw(){

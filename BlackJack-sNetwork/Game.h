@@ -27,6 +27,7 @@ namespace Game {
 		void Start();
 		State gameState;
 	private:
+		//void RequestData();
 		void Loop();
 		void InitCardPos();
 		void ReadCards(int &cardsNumber);

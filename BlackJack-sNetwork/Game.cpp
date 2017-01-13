@@ -34,6 +34,9 @@ void Game::Game::Start() {
 			Loop();
 		}
 	}
+	else if (gameState == State::Exiting) {
+			
+	}
 }
 
 void Game::Game::DeleteCards() {

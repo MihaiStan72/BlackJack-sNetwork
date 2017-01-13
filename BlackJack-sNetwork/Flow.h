@@ -13,7 +13,7 @@ namespace Flow {
 
 		std::string name;
 		bool IsPressed();
-		ConcreteDrawableObjects::Button *UIButton;
+		ConcreteDrawableObjects::Imagine *image;
 	private:
 		UI::Position topLeft, bottomRight;
 	};
@@ -38,13 +38,14 @@ namespace Flow {
 		virtual ~FlowManager();
 
 		void Loop();
-		void CreateButton(std::string title, UI::Position topLeftCorner, UI::Position bottomRightCorner);
+		Flow::Button* CreateButton(std::string title, UI::Position topLeftCorner, UI::Position bottomRightCorner, std::string path);
 		void DeleteButton(Flow::Button *);
 	private:
 		Flow::ButtonManager _buttonManager;
 		ConcreteDrawableObjects::Button UIButton;
 		void SetScreenForButton(std::string buttonName);
-		void DrawScreen(std::string screenTitle);
+		void DrawScreen(UI::Screen screen);
+		void Flow::FlowManager::DrawMenu();
 		void DrawScoreChart(std::vector<std::string> scoreChart);
 		std::vector<std::string> scoreChart;
 		UI::Position namePos;

@@ -55,6 +55,7 @@ namespace ConcreteDrawableObjects {
 		}
 		void SetWidthAndHeight(float x, float y);
 		void Draw();
+			
 
 	private:
 		float width, height;
