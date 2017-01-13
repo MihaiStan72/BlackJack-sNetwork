@@ -8,6 +8,18 @@
 using namespace ConcreteDrawableObjects;
 using namespace UI;
 
+#define PlayTopPosition UI::Position(900, 200)
+#define PlayBottomPosition UI::Position(1250, 315)
+
+#define ScoresTopPosition UI::Position(900, 400)
+#define ScoresBottomPosition UI::Position(1250, 515)
+
+#define ExitTopPosition UI::Position(900, 600)
+#define ExitBottomPosition UI::Position(1250, 715)
+
+#define BackTopPosition UI::Position(900, 600)
+#define BackBottomPosition UI::Position(1250, 715)
+
 
 void Flow::FlowManager::Loop() {
 	ApplicationCore::Application::GetReference().SetCurrentScreen(UI::Screen::Menu);
@@ -25,6 +37,10 @@ void Flow::FlowManager::Loop() {
 			}
 			else if (buttonName == "Play") {
 				ApplicationCore::Application::GetReference()._game->Start();
+			}
+			else if (buttonName == "Menu") {
+				ApplicationCore::Application::GetReference().SetCurrentScreen(Menu);
+				DrawScreen(Menu);
 			}
 		}
 
@@ -67,19 +83,20 @@ void Flow::FlowManager::DrawScreen(UI::Screen screen) {
 	}
 	//check title and draw screens accordingly
 }
-#define PlayTopPosition UI::Position(200, 200)
-#define PlayBottomPosition UI::Position(550, 315)
-
-#define ExitTopPosition UI::Position(200, 800)
-#define ExitBottomPosition UI::Position(550, 915)
 
 void Flow::FlowManager::DrawMenu() {
+	Imagine *background = new Imagine();
+	background->setPosition(UI::Position(-1, -1));
+	DrawAgent::GetReference().Add(background);
+
 	Flow::Button *playButton = CreateButton("Play", PlayTopPosition, PlayBottomPosition, "Resources/Photos/PlayButon.png");
-	Flow::Button *scoreChartButton = CreateButton("ScoreChart", UI::Position(200, 600), UI::Position(400, 800), "Resources/Photos/ScoresButton.png");
+	Flow::Button *scoreChartButton = CreateButton("ScoreChart", ScoresTopPosition, ScoresBottomPosition, "Resources/Photos/ScoresButton.png");
 	Flow::Button *exitButton = CreateButton("Exit", ExitTopPosition, ExitBottomPosition, "Resources/Photos/ExitButton.png");
 	UI::DrawAgent::GetReference().UpdateFrame();
 }
+
 void Flow::FlowManager::DrawScoreChart(std::vector<std::string> scoreChart) {
+
 
 	namePos.x = 746; namePos.y = 263;
 	Imagine *background = new Imagine();
@@ -102,6 +119,7 @@ void Flow::FlowManager::DrawScoreChart(std::vector<std::string> scoreChart) {
 		namePos.y += 30;
 		DrawAgent::GetReference().Add(vectorName[index]);
 	}
+	Flow::Button *backButton = CreateButton("Menu", BackTopPosition, BackBottomPosition, "Resources/Photos/BackButton.png");
 	DrawAgent::GetReference().UpdateFrame();
 }
 
