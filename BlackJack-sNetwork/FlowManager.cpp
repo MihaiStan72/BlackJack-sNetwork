@@ -2,8 +2,8 @@
 #include "ApplicationCore.h"
 #include "UI.h"
 
-#define DebugGame 0
-#define DebugScoreChart 1
+#define DebugGame 1
+#define DebugScoreChart 0
 
 void Flow::FlowManager::Loop() {
 	ApplicationCore::Application::GetReference().SetCurrentScreen(UI::Screen::Menu);
@@ -60,7 +60,7 @@ void Flow::FlowManager::DrawScreen(std::string screenTitle) {
 }
 
 void Flow::FlowManager::DrawScoreChart() {
-	std::cout << "DrawChart";
+	//std::cout << "DrawChart";
 }
 
 void Flow::FlowManager::CreateButton(std::string title, UI::Position topLeftCorner, UI::Position bottomRightCorner) {

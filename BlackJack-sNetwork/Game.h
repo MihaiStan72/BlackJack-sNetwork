@@ -49,26 +49,8 @@ namespace Game {
 		}playerCards, dealerCards;
 		char path[MAX_CARDS];
 		int cardsNumber=0, sumPlayer=0, sumDealer=0, playerIndex=0, dealerIndex=0, number=0;
-<<<<<<< HEAD
-=======
+
 		float x_Player, y_Player, x_Dealer, y_Dealer;
 	};
 
-	class Player {
-	public:
-		Player();
-		//virtual Player(Networking::User user);
-		virtual ~Player();
-	private:
-		Position playerCardsPos;
-	};
-
-	class SetOfCards {
-	public:
-		SetOfCards();
-		void Fill();
-	private:
-
->>>>>>> origin/master
-	};
-}
+} 
