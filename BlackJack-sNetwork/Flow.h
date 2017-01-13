@@ -1,5 +1,6 @@
 #pragma once
 #include "UI.h"
+#include "ConcreteDrawableObjects.h"
 
 namespace Flow {
 
@@ -12,6 +13,7 @@ namespace Flow {
 
 		std::string name;
 		bool IsPressed();
+		ConcreteDrawableObjects::Button *UIButton;
 	private:
 		UI::Position topLeft, bottomRight;
 	};
@@ -21,7 +23,9 @@ namespace Flow {
 		ButtonManager();
 		virtual ~ButtonManager();
 
-		void Flow::ButtonManager::AddButton(Flow::Button *button);
+		void ButtonManager::AddButton(Flow::Button *button);
+
+		void DeleteButton(Flow::Button *);
 		void DeleteAllButtons();
 		std::string getPressedButton();
 	private:
@@ -34,9 +38,12 @@ namespace Flow {
 		virtual ~FlowManager();
 
 		void Loop();
-		void Flow::FlowManager::CreateButton(std::string title, UI::Position topLeftCorner, UI::Position bottomRightCorner);
+		void CreateButton(std::string title, UI::Position topLeftCorner, UI::Position bottomRightCorner);
+		void DeleteButton(Flow::Button *);
 	private:
 		Flow::ButtonManager _buttonManager;
+		ConcreteDrawableObjects::Button UIButton;
+		void SetScreenForButton(std::string buttonName);
 		void DrawScreen(std::string screenTitle);
 	};
 }

@@ -46,7 +46,7 @@ namespace ConcreteDrawableObjects {
 		Button& operator*() {
 			return *this;
 		}
-		void setScaleSize(float x, float y);
+		void SetWidthAndHeight(float x, float y);
 		void Draw();
 
 	private:
