@@ -15,16 +15,27 @@ Imagine::Imagine() {
 
 void Imagine::Draw(){
 
+	bool ok = true;
 	if (topLeftPosition.x && topLeftPosition.y && !path.empty()) {
 		this->Draw(path, topLeftPosition.x, topLeftPosition.y);
 	}
-	else {
+	else{
+
+		if (topLeftPosition.x==-1 && topLeftPosition.y==-1 && path.empty()) {
+			ok = false;
+		}
+	
 		if (EnableUILogging) {
 			//Debugger::LogThis("inceput desenat tabla");
 		}
 		sf::RenderWindow *window = WindowManager::GetReference().getWindow(0);
 		sf::Sprite sprite;
-		std::string path = "Resources/Photos/table_ps.png";
+		if (ok) {
+			 path = "Resources/Photos/table_ps.png";
+		}
+		else {
+			 path = "Resources/Photos/coverBJ.png";
+		}
 		if (!hasLoadedTexture) {
 			texture.loadFromFile(path);
 			if (!texture.loadFromFile(path)) {

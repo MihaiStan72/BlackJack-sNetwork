@@ -31,6 +31,9 @@ namespace ConcreteDrawableObjects {
 		}
 		void Draw();
 		void Draw(std::string path, float x, float y);
+		void SetTextDimm(float);
+	private:
+		float textDimm;
 	};
 
 	class Button : public UI::DrawableObject

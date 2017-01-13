@@ -16,9 +16,12 @@ void Text::Draw() {
 	}
 }
 
-void Text::Draw(std::string path, float x, float y) {
+void Text::SetTextDimm(float dimm){
+	
+	textDimm = dimm;
+}
 
-	std::cout << "Desenat text";
+void Text::Draw(std::string path, float x, float y) {
 
 	sf::RenderWindow *window = WindowManager::GetReference().getWindow(0);
 	sf::Text text;
@@ -29,7 +32,7 @@ void Text::Draw(std::string path, float x, float y) {
 	}
 	text.setFont(font);
 	text.setString(path);
-	text.setCharacterSize(30); //in pixels, not points!
+	text.setCharacterSize(textDimm); //in pixels, not points!
 	text.setFillColor(sf::Color::Red);
 	text.setPosition(x, y);
 	window->draw(text);
