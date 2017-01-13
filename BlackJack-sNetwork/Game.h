@@ -15,11 +15,8 @@ namespace Game {
 
 	enum State : int {
 		Playing,
-		Exiting,
-		Restart
-
+		Exiting
 	};
-
 
 	class Game {
 	public:
@@ -30,12 +27,12 @@ namespace Game {
 	private:
 		void Loop();
 		void readCards(int &cardsNumber);
-		void deleteCards();
 		void getRandomImg(Imagine *img, int &number);
 		void draw_playerTwoCards();
 		void draw_dealerTwoCards();
 		void create_playerCardsVector();
 		void create_dealerCardsVector();
+		
 
 		struct {
 			Imagine *loadCards[MAX_CARDS];
@@ -54,17 +51,8 @@ namespace Game {
 	class Player {
 	public:
 		Player();
-		virtual Player(Networking::User user);
+		Player(Networking::User user);
 		virtual ~Player();
-	private:
-		Position playerCardsPos;
-	};
-
-	class SetOfCards {
-	public:
-		SetOfCards();
-		Fill();
-	private:
 
 	};
 }
