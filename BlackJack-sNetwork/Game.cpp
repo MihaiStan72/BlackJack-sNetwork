@@ -14,7 +14,23 @@ Game::Game::Game() {
 }
 
 void Game::Game::Start() {
+	
 	Loop();
+	if (gameState == State::Restart) {
+		deleteCards();
+		DrawAgent::GetReference().UpdateFrame();
+		Loop();
+	}
+}
+
+void Game::Game::deleteCards() {
+
+	for (int index = 0; index < MAX_PLAYER_CARDS; index++) {
+		
+		DrawAgent::GetReference().Delete(playerCards.shownCards[index]);
+		DrawAgent::GetReference().Delete(dealerCards.shownCards[index]);
+	}
+
 }
 
 void Game::Game::readCards(int &cardsNumber) {
@@ -83,12 +99,13 @@ void Game::Game::draw_dealerTwoCards() {
 void Game::Game::Loop() {
 
 	bool ok = true;
+	
 	sf::Time delayTime = sf::seconds(1);
+	sf::Time itsOver = sf::seconds(2);
+
 	WindowManager::WindowEvent event;
 	Imagine *table = new Imagine();
 	DrawAgent::GetReference().Add(table);
-	//table->alwaysDraw = false;
-	//DrawAgent::GetReference().RedrawFrame();
 	//place_playerBets();
 	readCards(cardsNumber);
 	create_playerCardsVector();
@@ -128,7 +145,8 @@ void Game::Game::Loop() {
 			if (sumDealer > BJ_CONDITION) {
 				
 				std::cout << "PlayerWins";
-				gameState = State::Exiting;
+				gameState = State::Restart;
+				sf::sleep(itsOver);
 				break;
 
 			}
@@ -136,7 +154,8 @@ void Game::Game::Loop() {
 			if (sumPlayer > BJ_CONDITION && sumDealer <= BJ_CONDITION) {
 				
 				std::cout << "DealerWins";
-				gameState = State::Exiting;
+				gameState = State::Restart;
+				sf::sleep(itsOver);
 				break;
 
 			}
@@ -144,21 +163,23 @@ void Game::Game::Loop() {
 			if (sumPlayer == BJ_CONDITION) {
 
 				std::cout << "Player Wins";
-				sf::sleep(delayTime);
-				gameState = State::Exiting;
+				gameState = State::Restart;
+				sf::sleep(itsOver);
 				break;
 			}
 
 			if (sumPlayer >= sumDealer) {
 
 				std::cout << "Player Wins";
-				gameState = State::Exiting;
+				gameState = State::Restart;
+				sf::sleep(itsOver);
 				break;
 			}
 			else
 			{
 				std::cout << "DealerWins";
-				gameState = State::Exiting;
+				gameState = State::Restart;
+				sf::sleep(itsOver);
 				break;
 			}
 		}
