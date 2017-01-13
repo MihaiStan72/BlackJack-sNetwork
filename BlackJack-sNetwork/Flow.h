@@ -45,5 +45,7 @@ namespace Flow {
 		ConcreteDrawableObjects::Button UIButton;
 		void SetScreenForButton(std::string buttonName);
 		void DrawScreen(std::string screenTitle);
+
+		void DrawScoreChart();
 	};
 }

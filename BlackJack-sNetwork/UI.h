@@ -19,6 +19,7 @@ namespace UI {
 		SinglePlayer,
 		Multiplayer,
 		Instructions,
+		ScoreChart,
 		Exit
 	};
 

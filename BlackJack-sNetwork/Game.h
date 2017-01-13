@@ -54,7 +54,7 @@ namespace Game {
 	class Player {
 	public:
 		Player();
-		virtual Player(Networking::User user);
+		//virtual Player(Networking::User user);
 		virtual ~Player();
 	private:
 		Position playerCardsPos;
@@ -63,7 +63,7 @@ namespace Game {
 	class SetOfCards {
 	public:
 		SetOfCards();
-		Fill();
+		void Fill();
 	private:
 
 	};
