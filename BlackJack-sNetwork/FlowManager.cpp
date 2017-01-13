@@ -37,7 +37,30 @@ Flow::FlowManager::~FlowManager() {
 
 }
 
+void Flow::FlowManager::SetScreenForButton(std::string buttonName) {
+	if (buttonName == "Play") {
+		ApplicationCore::Application::GetReference().SetCurrentScreen(UI::Screen::SinglePlayer);
+		//tbi;
+	}
+}
+
+
 void Flow::FlowManager::DrawScreen(std::string screenTitle) {
 	UI::DrawAgent::GetReference().EraseAll();
+	_buttonManager.DeleteAllButtons();
 	//check title and draw screens accordingly
+}
+
+void Flow::FlowManager::CreateButton(std::string title, UI::Position topLeftCorner, UI::Position bottomRightCorner) {
+	Flow::Button *flowButton = new Flow::Button(topLeftCorner, bottomRightCorner, title);
+	_buttonManager.AddButton(flowButton);
+	ConcreteDrawableObjects::Button *UIButton = new ConcreteDrawableObjects::Button();
+	UIButton->setPosition(topLeftCorner);
+	UIButton->SetWidthAndHeight(topLeftCorner.x - bottomRightCorner.x, topLeftCorner.y - bottomRightCorner.y);
+	flowButton->UIButton = UIButton;
+}
+
+void Flow::FlowManager::DeleteButton(Flow::Button *button) {
+	_buttonManager.DeleteButton(button);
+	UI::DrawAgent::GetReference().Delete(button->UIButton);
 }

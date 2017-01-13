@@ -9,9 +9,9 @@ using namespace UI;
 Button::Button(){
 }
 
-void Button::setScaleSize(float x, float y){
-	width = x;
-	height = y;
+void Button::SetWidthAndHeight(float width, float height){
+	width = width;
+	height = height;
 }
 
 void Button::Draw(){

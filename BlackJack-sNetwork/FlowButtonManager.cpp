@@ -13,7 +13,14 @@ void Flow::ButtonManager::AddButton(Flow::Button *button) {
 }
 
 void Flow::ButtonManager::DeleteAllButtons() {
-	buttonList.clear();
+	for each (Flow::Button *button in buttonList) {
+		DeleteButton(button);
+		UI::DrawAgent::GetReference().Delete(button->UIButton);
+	}
+}
+
+void Flow::ButtonManager::DeleteButton(Flow::Button *button) {
+	buttonList.remove(button);
 }
 
 std::string Flow::ButtonManager::getPressedButton() {
