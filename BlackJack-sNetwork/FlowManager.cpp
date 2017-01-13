@@ -75,7 +75,7 @@ void Flow::FlowManager::DrawMenu() {
 }
 void Flow::FlowManager::DrawScoreChart(std::vector<std::string> scoreChart) {
 
-	namePos.x = 746; namePos.y = 263;
+	namePos.x = 746; namePos.y = 213;
 	Imagine *background = new Imagine();
 	Text *score = new Text();
 	Text *vectorName[10];

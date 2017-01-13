@@ -13,30 +13,43 @@ Imagine::Imagine() {
 	texture = sf::Texture();
 }
 
-void Imagine::Draw(){
+void Imagine::Draw() {
 
-	bool ok = true;
+	int ok = 1;
+	sf::Sprite sprite;
+	sf::RenderWindow *window = WindowManager::GetReference().getWindow(0);
+
+
 	if (topLeftPosition.x && topLeftPosition.y && !path.empty()) {
 		this->Draw(path, topLeftPosition.x, topLeftPosition.y);
 	}
-	else{
+	else {
 
-		if (topLeftPosition.x==-1 && topLeftPosition.y==-1 && path.empty()) {
-			ok = false;
-		}
-	
-		if (EnableUILogging) {
-			//Debugger::LogThis("inceput desenat tabla");
-		}
-		sf::RenderWindow *window = WindowManager::GetReference().getWindow(0);
-		sf::Sprite sprite;
-		if (ok) {
-			 path = "Resources/Photos/table_ps.png";
+		if (topLeftPosition.x == -1 && topLeftPosition.y == -1 && path.empty()) {
+			ok = 0;
 		}
 		else {
-			 path = "Resources/Photos/coverBJ.png";
+			if (topLeftPosition.x == 50 && topLeftPosition.y == 650 && path.empty()) {
+				ok = 2;
+			}
 		}
-		if (!hasLoadedTexture) {
+
+		if (EnableUILogging) {
+			//Debugger::LogThis("inceput desenat tabla");
+		}			
+		
+		if (ok == 1) {
+			path = "Resources/Photos/table_ps.png";
+		}
+
+		if (ok == 2) {
+			path = "Resources/Photos/chips.png";
+		}
+		if (ok == 0){
+			path = "Resources/Photos/coverBJ.png";
+		}
+
+	if (!hasLoadedTexture) {
 			texture.loadFromFile(path);
 			if (!texture.loadFromFile(path)) {
 				if (EnableUILogging) {
@@ -45,17 +58,26 @@ void Imagine::Draw(){
 			}
 			hasLoadedTexture = true;
 		}
-		//std::cout << clock.getElapsedTime().asSeconds() << " ";
-		sprite.setTexture(texture);
-		//std::cout << clock.getElapsedTime().asSeconds() << " ";
-		int centredSprite_x = (window->getSize().x - sprite.getLocalBounds().width) / 2;
-		int centredSprite_y = (window->getSize().y - sprite.getLocalBounds().height) / 2;
-		sprite.setPosition(centredSprite_x, centredSprite_y);
-		window->draw(sprite);
-		if (EnableUILogging) {
-			//Debugger::LogThis("Desenat tabla");
+
+		if (ok != 2) {
+
+			//std::cout << clock.getElapsedTime().asSeconds() << " ";
+			sprite.setTexture(texture);
+			//std::cout << clock.getElapsedTime().asSeconds() << " ";
+			int centredSprite_x = (window->getSize().x - sprite.getLocalBounds().width) / 2;
+			int centredSprite_y = (window->getSize().y - sprite.getLocalBounds().height) / 2;
+			sprite.setPosition(centredSprite_x, centredSprite_y);
+			if (EnableUILogging) {
+				//Debugger::LogThis("Desenat tabla");
+			}
+		}
+		else {
+
+			sprite.setTexture(texture);
+			sprite.setScale(0.5f, 0.5f);
 		}
 	}
+	window->draw(sprite);
 }
 
 void Imagine::Draw(std::string path, float x, float y){

@@ -121,6 +121,10 @@ void Game::Game::Loop() {
 	WindowManager::WindowEvent event;
 	Imagine *table = new Imagine();
 	DrawAgent::GetReference().Add(table);
+
+	Imagine *coins = new Imagine();
+	coins->setPosition(UI::Position(50, 650));
+	DrawAgent::GetReference().Add(coins);
 	//place_playerBets();
 	Create_playerCardsVector();
 	Create_dealerCardsVector();
