@@ -6,6 +6,7 @@
 #define MAX_CARDS 60
 #define MAX_PLAYER_CARDS 11
 #define BJ_CONDITION 21
+#define DEALER_CONDITION 17
 
 using namespace UI;
 using namespace ConcreteDrawableObjects;
@@ -26,13 +27,17 @@ namespace Game {
 	private:
 		void Loop();
 		void readCards(int &cardsNumber);
-		void getRandomPath(char path[MAX_CARDS], int &number);
+		void getRandomImg(Imagine *img, int &number);
 		void draw_playerTwoCards();
+		void draw_dealerTwoCards();
 		void create_playerCardsVector();
+		void create_dealerCardsVector();
+		
+
 		struct {
-			char Matrix[MAX_CARDS][MAX_CARDS];
-			int value[MAX_CARDS];
-		}cards;
+			Imagine *shownCards[MAX_PLAYER_CARDS];
+			int values[MAX_PLAYER_CARDS];
+		}allCards;
 
 		struct{
 			Imagine *shownCards[MAX_PLAYER_CARDS];
