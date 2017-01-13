@@ -44,9 +44,8 @@ namespace Flow {
 		Flow::ButtonManager _buttonManager;
 		ConcreteDrawableObjects::Button UIButton;
 		void SetScreenForButton(std::string buttonName);
-		void	 DrawScreen(UI::Screen screen);
+		void DrawScreen(UI::Screen screen);
 		void Flow::FlowManager::DrawMenu();
-		void DrawScoreChart();
 		void DrawScoreChart(std::vector<std::string> scoreChart);
 		std::vector<std::string> scoreChart;
 		UI::Position namePos;
