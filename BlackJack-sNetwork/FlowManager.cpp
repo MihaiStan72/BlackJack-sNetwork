@@ -20,8 +20,8 @@ void Flow::FlowManager::Loop() {
 			if (buttonName == "ScoreChart") {
 				Flow::FlowManager::DrawScreen(ScoreChart);
 			}
-			else if (buttonName == "Menu") {
-				DrawScreen(Menu);
+			else if (buttonName == "Exit") {
+				ApplicationCore::Application::GetReference().SetCurrentScreen(Exit);
 			}
 			else if (buttonName == "Play") {
 				ApplicationCore::Application::GetReference()._game->Start();
@@ -67,10 +67,16 @@ void Flow::FlowManager::DrawScreen(UI::Screen screen) {
 	}
 	//check title and draw screens accordingly
 }
+#define PlayTopPosition UI::Position(200, 200)
+#define PlayBottomPosition UI::Position(550, 315)
+
+#define ExitTopPosition UI::Position(200, 800)
+#define ExitBottomPosition UI::Position(550, 915)
 
 void Flow::FlowManager::DrawMenu() {
-	Flow::Button *playButton = CreateButton("Play", UI::Position(200, 200), UI::Position(400, 400), "Resources/Photos/buton.png");
-	Flow::Button *scoreChartButton = CreateButton("ScoreChart", UI::Position(200, 600), UI::Position(400, 800), "Resources/Photos/buton.png");
+	Flow::Button *playButton = CreateButton("Play", PlayTopPosition, PlayBottomPosition, "Resources/Photos/PlayButon.png");
+	Flow::Button *scoreChartButton = CreateButton("ScoreChart", UI::Position(200, 600), UI::Position(400, 800), "Resources/Photos/ScoresButton.png");
+	Flow::Button *exitButton = CreateButton("Exit", ExitTopPosition, ExitBottomPosition, "Resources/Photos/ExitButton.png");
 	UI::DrawAgent::GetReference().UpdateFrame();
 }
 void Flow::FlowManager::DrawScoreChart(std::vector<std::string> scoreChart) {
