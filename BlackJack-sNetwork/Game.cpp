@@ -8,32 +8,44 @@ using namespace ConcreteDrawableObjects;
 
 
 Game::Game::Game() {
+
 	gameState = State::Playing;
-	x_Player = 620; y_Player = 370;
-	x_Dealer = 610; y_Dealer = 15;
+	ReadCards(cardsNumber);
+	InitCardPos();
+}
+
+void Game::Game::InitCardPos() {
+
+	playerCard_pos.x = 620; playerCard_pos.y = 370;
+	dealerCard_pos.x = 610; dealerCard_pos.y = 15;
+	sumPlayer = 0; sumDealer = 0;
+	playerIndex = 0; dealerIndex = 0; number = 0;
 }
 
 void Game::Game::Start() {
 	
 	Loop();
 	if (gameState == State::Restart) {
-		deleteCards();
-		DrawAgent::GetReference().UpdateFrame();
-		Loop();
+
+		while (gameState == State::Restart) {
+			DeleteCards();
+			InitCardPos();
+			DrawAgent::GetReference().UpdateFrame();
+			Loop();
+		}
 	}
 }
 
-void Game::Game::deleteCards() {
+void Game::Game::DeleteCards() {
 
 	for (int index = 0; index < MAX_PLAYER_CARDS; index++) {
 		
 		DrawAgent::GetReference().Delete(playerCards.shownCards[index]);
 		DrawAgent::GetReference().Delete(dealerCards.shownCards[index]);
 	}
-
 }
 
-void Game::Game::readCards(int &cardsNumber) {
+void Game::Game::ReadCards(int &cardsNumber) {
 
 	std::ifstream fin("Resources/cards.txt");
 
@@ -48,7 +60,7 @@ void Game::Game::readCards(int &cardsNumber) {
 	}
 }
 
-void Game::Game::getRandomImg(Imagine *img, int &number){
+void Game::Game::GetRandomImg(Imagine *img, int &number){
 
 	int randomNumber;
 	randomNumber = rand() % cardsNumber;
@@ -56,28 +68,28 @@ void Game::Game::getRandomImg(Imagine *img, int &number){
 	img->setPath(allCards.loadCards[randomNumber]->getPath());
 }
 
-void Game::Game::create_playerCardsVector() {
+void Game::Game::Create_playerCardsVector() {
 	
 	for (int index = 0; index < MAX_PLAYER_CARDS; index++){
 		playerCards.shownCards[index] = new Imagine();
-		getRandomImg(playerCards.shownCards[index], number);
-		playerCards.shownCards[index]->setPosition(UI::Position(x_Player, y_Player));
-		x_Player += 40; y_Player += 20;
+		GetRandomImg(playerCards.shownCards[index], number);
+		playerCards.shownCards[index]->setPosition(UI::Position(playerCard_pos.x, playerCard_pos.y));
+		playerCard_pos.x += 40; playerCard_pos.y += 20;
 		playerCards.values[index] = number;
 	}
 }
-void Game::Game::create_dealerCardsVector() {
+void Game::Game::Create_dealerCardsVector() {
 
 	for (int index = 0; index < MAX_PLAYER_CARDS; index++) {
 		dealerCards.shownCards[index] = new Imagine();
-		dealerCards.shownCards[index]->setPosition(UI::Position(x_Dealer, y_Dealer));
-		x_Dealer += 40; y_Dealer += 20;
-		getRandomImg(dealerCards.shownCards[index], number);
+		dealerCards.shownCards[index]->setPosition(UI::Position(dealerCard_pos.x, dealerCard_pos.y));
+		dealerCard_pos.x += 40; dealerCard_pos.y += 20;
+		GetRandomImg(dealerCards.shownCards[index], number);
 		dealerCards.values[index] = number;
 	}
 }
 
-void Game::Game::draw_playerTwoCards() {
+void Game::Game::Draw_playerTwoCards() {
 
 	sumPlayer += playerCards.values[playerIndex];
 	DrawAgent::GetReference().Add(playerCards.shownCards[playerIndex++]);
@@ -85,7 +97,7 @@ void Game::Game::draw_playerTwoCards() {
 	DrawAgent::GetReference().Add(playerCards.shownCards[playerIndex++]);
 }
 
-void Game::Game::draw_dealerTwoCards() {
+void Game::Game::Draw_dealerTwoCards() {
 
 	Imagine *backCard = new Imagine();
 	sumDealer += dealerCards.values[dealerIndex];
@@ -101,17 +113,16 @@ void Game::Game::Loop() {
 	bool ok = true;
 	
 	sf::Time delayTime = sf::seconds(1);
-	sf::Time itsOver = sf::seconds(2);
+	sf::Time itsOver = sf::seconds(1.7);
 
 	WindowManager::WindowEvent event;
 	Imagine *table = new Imagine();
 	DrawAgent::GetReference().Add(table);
 	//place_playerBets();
-	readCards(cardsNumber);
-	create_playerCardsVector();
-	create_dealerCardsVector();
-	draw_playerTwoCards();
-	draw_dealerTwoCards();
+	Create_playerCardsVector();
+	Create_dealerCardsVector();
+	Draw_playerTwoCards();
+	Draw_dealerTwoCards();
 
 	while (gameState != State::Exiting){
 		

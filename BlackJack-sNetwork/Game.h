@@ -20,7 +20,6 @@ namespace Game {
 
 	};
 
-
 	class Game {
 	public:
 		Game();
@@ -29,13 +28,15 @@ namespace Game {
 		State gameState;
 	private:
 		void Loop();
-		void readCards(int &cardsNumber);
-		void deleteCards();
-		void getRandomImg(Imagine *img, int &number);
-		void draw_playerTwoCards();
-		void draw_dealerTwoCards();
-		void create_playerCardsVector();
-		void create_dealerCardsVector();
+		void InitCardPos();
+		void ReadCards(int &cardsNumber);
+		void DeleteCards();
+		void GetRandomImg(Imagine *img, int &number);
+		void Draw_playerTwoCards();
+		void Draw_dealerTwoCards();
+		void Create_playerCardsVector();
+		void Create_dealerCardsVector();
+		Position playerCard_pos, dealerCard_pos;
 
 		struct {
 			Imagine *loadCards[MAX_CARDS];
@@ -48,23 +49,5 @@ namespace Game {
 		}playerCards, dealerCards;
 		char path[MAX_CARDS];
 		int cardsNumber=0, sumPlayer=0, sumDealer=0, playerIndex=0, dealerIndex=0, number=0;
-		float x_Player, y_Player, x_Dealer, y_Dealer;
-	};
-
-	class Player {
-	public:
-		Player();
-		virtual Player(Networking::User user);
-		virtual ~Player();
-	private:
-		Position playerCardsPos;
-	};
-
-	class SetOfCards {
-	public:
-		SetOfCards();
-		Fill();
-	private:
-
 	};
 }

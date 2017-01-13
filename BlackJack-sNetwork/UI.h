@@ -11,7 +11,7 @@ namespace UI {
 		Position(float horizontalCoordinate, float verticalCoordinate);
 		virtual ~Position();
 		Position(Position const& position);
-		int x, y;
+		float x, y;
 	};
 
 	enum Screen : int {

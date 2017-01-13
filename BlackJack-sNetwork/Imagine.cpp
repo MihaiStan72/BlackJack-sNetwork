@@ -68,7 +68,6 @@ void Imagine::Draw(std::string path, float x, float y){
 	if (EnableUILogging) {
 		//Debugger::LogThis("Desenat carte");
 	}
-
 }
 
 Imagine::~Imagine(){
