@@ -17,7 +17,7 @@ sf::RenderWindow* WindowManager::getWindow(int index) {
 
 void WindowManager::CreateWindow() {
 	sf::RenderWindow *window = new sf::RenderWindow();
-	window->create(sf::VideoMode::getDesktopMode(), "BlackJack's Network", sf::Style::Default);
+	window->create(sf::VideoMode(1366, 768), "BlackJack's Network", sf::Style::Default);
 	window->setVerticalSyncEnabled(true);
 	window->setFramerateLimit(60);
 	windowVector.push_back(window);

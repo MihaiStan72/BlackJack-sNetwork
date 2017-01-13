@@ -5,8 +5,8 @@
 using namespace ConcreteDrawableObjects;
 using namespace UI;
 
-#define DebugGame 0
-#define DebugScoreChart 1
+#define DebugGame 1
+#define DebugScoreChart 0
 
 void Flow::FlowManager::Loop() {
 	ApplicationCore::Application::GetReference().SetCurrentScreen(UI::Screen::Menu);

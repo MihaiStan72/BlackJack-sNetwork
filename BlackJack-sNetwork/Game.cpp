@@ -143,7 +143,7 @@ void Game::Game::Loop() {
 			}
 		}
 
-		if (event == WindowManager::WindowEvent::RightClick ){
+		if (event == WindowManager::WindowEvent::RightClick || sumPlayer >= BJ_CONDITION){
 			
 			while (sumDealer < DEALER_CONDITION) {
 				sumDealer += dealerCards.values[dealerIndex];
