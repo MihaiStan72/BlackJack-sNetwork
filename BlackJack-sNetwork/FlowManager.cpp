@@ -85,11 +85,12 @@ void Flow::FlowManager::DrawScreen(UI::Screen screen) {
 }
 
 void Flow::FlowManager::DrawMenu() {
+
 	Imagine *background = new Imagine();
 	background->setPosition(UI::Position(-1, -1));
 	DrawAgent::GetReference().Add(background);
 
-	Flow::Button *playButton = CreateButton("Play", PlayTopPosition, PlayBottomPosition, "Resources/Photos/PlayButon.png");
+	Flow::Button *playButton = CreateButton("Play", PlayTopPosition, PlayBottomPosition, "Resources/Photos/PlayButton.png");
 	Flow::Button *scoreChartButton = CreateButton("ScoreChart", ScoresTopPosition, ScoresBottomPosition, "Resources/Photos/ScoresButton.png");
 	Flow::Button *exitButton = CreateButton("Exit", ExitTopPosition, ExitBottomPosition, "Resources/Photos/ExitButton.png");
 	UI::DrawAgent::GetReference().UpdateFrame();

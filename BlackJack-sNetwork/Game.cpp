@@ -17,7 +17,7 @@ Game::Game::Game() {
 void Game::Game::InitCardPos() {
 
 	playerCard_pos.x = 620; playerCard_pos.y = 370;
-	dealerCard_pos.x = 610; dealerCard_pos.y = 15;
+	dealerCard_pos.x = 620; dealerCard_pos.y = 15;
 	sumPlayer = 0; sumDealer = 0;
 	playerIndex = 0; dealerIndex = 0; number = 0;
 }
@@ -106,7 +106,7 @@ void Game::Game::Draw_dealerTwoCards() {
 	sumDealer += dealerCards.values[dealerIndex];
 	DrawAgent::GetReference().Add(dealerCards.shownCards[dealerIndex++]);
 
-	backCard->setPosition(UI::Position(650, 35));
+	backCard->setPosition(UI::Position(660, 35));
 	backCard->setPath("Resources/cards_PNG/back_card.png");
 	DrawAgent::GetReference().Add(backCard);
 }
@@ -114,22 +114,31 @@ void Game::Game::Draw_dealerTwoCards() {
 void Game::Game::Loop() {
 
 	bool ok = true;
-	
-	sf::Time delayTime = sf::seconds(1);
-	sf::Time itsOver = sf::seconds(1.7);
+
+
+	sf::Time delayTime = sf::seconds(1.5);
+	sf::Time itsOver = sf::seconds(2);
+
+	Text *playerWon = new Text();
+	Text *dealerWon = new Text();
 
 	WindowManager::WindowEvent event;
 	Imagine *table = new Imagine();
 	DrawAgent::GetReference().Add(table);
 
-	Imagine *coins = new Imagine();
-	coins->setPosition(UI::Position(50, 650));
-	DrawAgent::GetReference().Add(coins);
 	//place_playerBets();
 	Create_playerCardsVector();
 	Create_dealerCardsVector();
 	Draw_playerTwoCards();
 	Draw_dealerTwoCards();
+
+	playerWon->setPath("Player Won");
+	playerWon->setPosition(UI::Position(86, 54));
+	playerWon->SetTextDimm(60);
+
+	dealerWon->setPath("Dealer Won");
+	dealerWon->setPosition(UI::Position(86, 54));
+	dealerWon->SetTextDimm(60);
 
 	while (gameState != State::Exiting){
 		
@@ -163,8 +172,9 @@ void Game::Game::Loop() {
 			if (sumDealer > BJ_CONDITION) {
 				
 				std::cout << "PlayerWins";
+				DrawAgent::GetReference().Add(playerWon);
 				gameState = State::Restart;
-				sf::sleep(itsOver);
+				bool over = true;
 				break;
 
 			}
@@ -172,6 +182,7 @@ void Game::Game::Loop() {
 			if (sumPlayer > BJ_CONDITION && sumDealer <= BJ_CONDITION) {
 				
 				std::cout << "DealerWins";
+				DrawAgent::GetReference().Add(dealerWon);
 				gameState = State::Restart;
 				sf::sleep(itsOver);
 				break;
@@ -181,6 +192,7 @@ void Game::Game::Loop() {
 			if (sumPlayer == BJ_CONDITION) {
 
 				std::cout << "Player Wins";
+				DrawAgent::GetReference().Add(playerWon);
 				gameState = State::Restart;
 				sf::sleep(itsOver);
 				break;
@@ -189,6 +201,7 @@ void Game::Game::Loop() {
 			if (sumPlayer >= sumDealer) {
 
 				std::cout << "Player Wins";
+				DrawAgent::GetReference().Add(playerWon);
 				gameState = State::Restart;
 				sf::sleep(itsOver);
 				break;
@@ -196,6 +209,7 @@ void Game::Game::Loop() {
 			else
 			{
 				std::cout << "DealerWins";
+				DrawAgent::GetReference().Add(dealerWon);
 				gameState = State::Restart;
 				sf::sleep(itsOver);
 				break;

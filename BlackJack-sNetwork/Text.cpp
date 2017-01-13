@@ -33,7 +33,8 @@ void Text::Draw(std::string path, float x, float y) {
 	text.setFont(font);
 	text.setString(path);
 	text.setCharacterSize(textDimm); //in pixels, not points!
-	text.setFillColor(sf::Color::Red);
+	sf::Color color(227, 219, 88);
+	text.setFillColor(color);
 	text.setPosition(x, y);
 	window->draw(text);
 }
