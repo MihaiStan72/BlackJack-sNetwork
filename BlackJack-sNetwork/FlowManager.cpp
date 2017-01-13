@@ -2,18 +2,23 @@
 #include "ApplicationCore.h"
 #include "UI.h"
 
-#define DEBUG 1
+#define DebugGame 0
+#define DebugScoreChart 1
 
 void Flow::FlowManager::Loop() {
 	ApplicationCore::Application::GetReference().SetCurrentScreen(UI::Screen::Menu);
 	UI::WindowManager::WindowEvent checkResult = UI::WindowManager::WindowEvent::NoEvent;
 	while (ApplicationCore::Application::GetReference().GetCurrentScreen() != UI::Screen::Exit) {
-		if (DEBUG) {
+		if (DebugGame) {
 			ApplicationCore::Application::GetReference()._game->Start();
 			if (ApplicationCore::Application::GetReference()._game->gameState == Game::State::Exiting) {
 				UI::Screen::Exit;
 				break;
 			}
+		}
+		if (DebugScoreChart) {
+			ApplicationCore::Application::GetReference().SetCurrentScreen(UI::Screen::ScoreChart);
+			DrawScreen("ScoreChart");
 		}
 		checkResult = UI::WindowManager::GetReference().CheckWindowForEvents(0);
 		if (checkResult == UI::WindowManager::WindowEvent::Close) {
@@ -48,7 +53,14 @@ void Flow::FlowManager::SetScreenForButton(std::string buttonName) {
 void Flow::FlowManager::DrawScreen(std::string screenTitle) {
 	UI::DrawAgent::GetReference().EraseAll();
 	_buttonManager.DeleteAllButtons();
+	if (screenTitle == "ScoreChart") {
+		DrawScoreChart();
+	}
 	//check title and draw screens accordingly
+}
+
+void Flow::FlowManager::DrawScoreChart() {
+	std::cout << "DrawChart";
 }
 
 void Flow::FlowManager::CreateButton(std::string title, UI::Position topLeftCorner, UI::Position bottomRightCorner) {
