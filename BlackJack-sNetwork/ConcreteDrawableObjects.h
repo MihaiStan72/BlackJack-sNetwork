@@ -2,6 +2,7 @@
 
 #include "UI.h"
 #include <string>
+#include <SFML/Window.hpp>
 
 namespace ConcreteDrawableObjects {
 	
@@ -15,6 +16,9 @@ namespace ConcreteDrawableObjects {
 		}
 		void Draw();
 		void Draw(std::string path, float x, float y);
+	private:
+		sf::Texture texture;
+		bool hasLoadedTexture;
 	};
 
 	class Text : public UI::DrawableObject

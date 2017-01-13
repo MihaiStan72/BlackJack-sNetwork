@@ -1,5 +1,5 @@
 #include "Flow.h"
-
+#include <iostream>
 int main()
 {
 	srand(time(NULL));

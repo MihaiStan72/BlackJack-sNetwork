@@ -31,6 +31,7 @@ namespace UI {
 
 		void setPosition(Position position);
 		void setPath(std::string);
+		std::string getPath();
 		
 	protected:
 		Position topLeftPosition, bottomRightPosition;
@@ -47,7 +48,6 @@ namespace UI {
 			static DrawAgent instance;
 			return instance;
 		}
-
 		void UpdateFrame();
 
 		void Add(DrawableObject *object);

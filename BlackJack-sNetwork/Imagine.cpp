@@ -8,7 +8,9 @@ using namespace ConcreteDrawableObjects;
 using namespace UI;
 
 
-Imagine::Imagine(){
+Imagine::Imagine() {
+	hasLoadedTexture = false;
+	texture = sf::Texture();
 }
 
 void Imagine::Draw(){
@@ -22,15 +24,19 @@ void Imagine::Draw(){
 		}
 		sf::RenderWindow *window = WindowManager::GetReference().getWindow(0);
 		sf::Sprite sprite;
-		sf::Texture texture;
 		std::string path = "Resources/Photos/table_ps.png";
-
-		if (!texture.loadFromFile(path)) {
-			if (EnableUILogging) {
-				//Debugger::LogThis("Eroare incarcare png!");
+		if (!hasLoadedTexture) {
+			texture.loadFromFile(path);
+			if (!texture.loadFromFile(path)) {
+				if (EnableUILogging) {
+					//Debugger::LogThis("Eroare incarcare png!");
+				}
 			}
+			hasLoadedTexture = true;
 		}
+		//std::cout << clock.getElapsedTime().asSeconds() << " ";
 		sprite.setTexture(texture);
+		//std::cout << clock.getElapsedTime().asSeconds() << " ";
 		int centredSprite_x = (window->getSize().x - sprite.getLocalBounds().width) / 2;
 		int centredSprite_y = (window->getSize().y - sprite.getLocalBounds().height) / 2;
 		sprite.setPosition(centredSprite_x, centredSprite_y);

@@ -25,29 +25,28 @@ void Game::Game::readCards(int &cardsNumber) {
 	for (int index = 0; index < cardsNumber; index++) {
 		fin >> path;
 		fin >> number;
-		allCards.shownCards[index] = new Imagine();
-		allCards.shownCards[index]->setPath(path);
+		allCards.loadCards[index] = new Imagine();
+		std::string sir = std::string(path);
+		allCards.loadCards[index]->setPath(sir);
 		allCards.values[index] = number;
 	}
 }
 
 void Game::Game::getRandomImg(Imagine *img, int &number){
 
-	*img = new Imagine();
 	int randomNumber;
 	randomNumber = rand() % cardsNumber;
-
 	number = allCards.values[randomNumber];
-	img = allCards.shownCards[randomNumber];
+	img->setPath(allCards.loadCards[randomNumber]->getPath());
 }
 
 void Game::Game::create_playerCardsVector() {
 	
 	for (int index = 0; index < MAX_PLAYER_CARDS; index++){
 		playerCards.shownCards[index] = new Imagine();
+		getRandomImg(playerCards.shownCards[index], number);
 		playerCards.shownCards[index]->setPosition(UI::Position(x_Player, y_Player));
 		x_Player += 40; y_Player += 20;
-		getRandomImg(playerCards.shownCards[index], number);
 		playerCards.values[index] = number;
 	}
 }
@@ -64,20 +63,17 @@ void Game::Game::create_dealerCardsVector() {
 
 void Game::Game::draw_playerTwoCards() {
 
-	sumPlayer += playerCards.values[shownIndex];
-	DrawAgent::GetReference().Add(playerCards.shownCards[shownIndex++]);
-	sumPlayer += playerCards.values[shownIndex];
-	DrawAgent::GetReference().Add(playerCards.shownCards[shownIndex++]);
+	sumPlayer += playerCards.values[playerIndex];
+	DrawAgent::GetReference().Add(playerCards.shownCards[playerIndex++]);
+	sumPlayer += playerCards.values[playerIndex];
+	DrawAgent::GetReference().Add(playerCards.shownCards[playerIndex++]);
 }
 
 void Game::Game::draw_dealerTwoCards() {
 
 	Imagine *backCard = new Imagine();
-	shownIndex = 0;
-
-
-	sumDealer += dealerCards.values[shownIndex];
-	DrawAgent::GetReference().Add(dealerCards.shownCards[shownIndex++]);
+	sumDealer += dealerCards.values[dealerIndex];
+	DrawAgent::GetReference().Add(dealerCards.shownCards[dealerIndex++]);
 
 	backCard->setPosition(UI::Position(650, 35));
 	backCard->setPath("Resources/cards_PNG/back_card.png");
@@ -87,19 +83,18 @@ void Game::Game::draw_dealerTwoCards() {
 void Game::Game::Loop() {
 
 	bool ok = true;
-	sf::Time delayTime = sf::milliseconds(1000);
+	sf::Time delayTime = sf::seconds(1);
 	WindowManager::WindowEvent event;
 	Imagine *table = new Imagine();
 	DrawAgent::GetReference().Add(table);
-	
+	//table->alwaysDraw = false;
+	//DrawAgent::GetReference().RedrawFrame();
 	//place_playerBets();
 	readCards(cardsNumber);
 	create_playerCardsVector();
 	create_dealerCardsVector();
 	draw_playerTwoCards();
 	draw_dealerTwoCards();
-	//create_dealerCardsVector();
-
 
 	while (gameState != State::Exiting){
 		
@@ -110,21 +105,61 @@ void Game::Game::Loop() {
 			gameState = State::Exiting;
 			break;
 		}
-
-		if (sumPlayer <= BJ_CONDITION){
+		
+	
+		if (sumPlayer < BJ_CONDITION){
 
 			if (event == WindowManager::WindowEvent::LeftClick) {
-				sumPlayer += playerCards.values[shownIndex];
-				DrawAgent::GetReference().Add(playerCards.shownCards[shownIndex++]);
+				sumPlayer += playerCards.values[playerIndex];
+				DrawAgent::GetReference().Add(playerCards.shownCards[playerIndex++]);
 			}
 		}
 
-		if (event == WindowManager::WindowEvent::RightClick){
-			shownIndex = 1;
+		if (event == WindowManager::WindowEvent::RightClick ){
+			
 			while (sumDealer < DEALER_CONDITION) {
-				sumDealer += dealerCards.values[shownIndex];
-				DrawAgent::GetReference().Add(dealerCards.shownCards[shownIndex++]);
+				sumDealer += dealerCards.values[dealerIndex];
+				DrawAgent::GetReference().Add(dealerCards.shownCards[dealerIndex++]);
+			
+			DrawAgent::GetReference().UpdateFrame();
+			sf::sleep(delayTime);
+			}
+
+			if (sumDealer > BJ_CONDITION) {
+				
+				std::cout << "PlayerWins";
+				gameState = State::Exiting;
+				break;
+
+			}
+
+			if (sumPlayer > BJ_CONDITION && sumDealer <= BJ_CONDITION) {
+				
+				std::cout << "DealerWins";
+				gameState = State::Exiting;
+				break;
+
+			}
+
+			if (sumPlayer == BJ_CONDITION) {
+
+				std::cout << "Player Wins";
 				sf::sleep(delayTime);
+				gameState = State::Exiting;
+				break;
+			}
+
+			if (sumPlayer >= sumDealer) {
+
+				std::cout << "Player Wins";
+				gameState = State::Exiting;
+				break;
+			}
+			else
+			{
+				std::cout << "DealerWins";
+				gameState = State::Exiting;
+				break;
 			}
 		}
 	}

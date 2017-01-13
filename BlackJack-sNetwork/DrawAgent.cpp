@@ -1,4 +1,5 @@
 #include "UI.h"
+#include <iostream>
 
 using namespace UI;
 
@@ -22,8 +23,8 @@ void DrawAgent::EraseAll() {
 	referenceList.clear();
 }
 
+
 void DrawAgent::UpdateFrame() {
-	
 	sf::RenderWindow *window = WindowManager::GetReference().getWindow(0);
 	window->clear();
 	for each (DrawableObject* object in referenceList) {

@@ -15,5 +15,9 @@ void DrawableObject::setPath(std::string string) {
 	path = string;
 }
 
+	
+	return path;
+}
+
 DrawableObject::~DrawableObject() {
 }
